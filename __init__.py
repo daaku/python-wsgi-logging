@@ -1,4 +1,5 @@
 import logging
+from datetime import datetime
 
 class LoggingMiddleware:
     def __init__(self, application, full=False):
@@ -12,7 +13,7 @@ class LoggingMiddleware:
         if environ['QUERY_STRING']:
             url += '?' + environ['QUERY_STRING']
         request_method = environ['REQUEST_METHOD']
-        logging.info(request_method + ' ' + url)
+        logging.info(str(datetime.now()) + ' -- ' + request_method + ' ' + url)
 
         if self._full:
             import pprint
